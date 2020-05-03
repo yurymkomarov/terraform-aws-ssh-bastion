@@ -31,6 +31,7 @@ resource "aws_secretsmanager_secret" "this" {
 
   tags = {
     Name      = var.name
+    Module    = path.module
     Workspace = terraform.workspace
   }
 
@@ -122,6 +123,7 @@ resource "aws_security_group" "this" {
 
   tags = {
     Name      = var.name
+    Module    = path.module
     Workspace = terraform.workspace
   }
 
@@ -147,6 +149,7 @@ resource "aws_iam_role" "this" {
 
   tags = {
     Name      = var.name
+    Module    = path.module
     Workspace = terraform.workspace
   }
 
