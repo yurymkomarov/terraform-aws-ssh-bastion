@@ -29,13 +29,13 @@ variable "vpc_subnets" {
   description = "A list of VPC subnet IDs."
 }
 
-variable "cidr_block" {
+variable "ingress_cidr_block" {
   type        = string
   description = "The CIDR IP range that is permitted to SSH to bastion instance. Note: a value of 0.0.0.0/0 will allow access from ANY IP address."
   default     = "0.0.0.0/0"
 
   validation {
-    condition     = can(regex("^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(0|[1-9]|1[0-9]|2[0-9]|3[0-2]))$", var.cidr_block))
+    condition     = can(regex("^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(0|[1-9]|1[0-9]|2[0-9]|3[0-2]))$", var.ingress_cidr_block))
     error_message = "CIDR parameter must be in the form x.x.x.x/0-32."
   }
 }

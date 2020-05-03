@@ -9,11 +9,7 @@ resource "random_id" "this" {
   byte_length = 1
 
   keepers = {
-    name          = var.name
-    instance_type = var.instance_type
-    vpc_id        = var.vpc_id
-    vpc_subnets   = join("", var.vpc_subnets)
-    cidr_blocks   = var.cidr_block
+    vpc_subnets = join("", var.vpc_subnets)
   }
 }
 
@@ -111,7 +107,7 @@ resource "aws_security_group" "this" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [var.cidr_block]
+    cidr_blocks = [var.ingress_cidr_block]
   }
 
   egress {
